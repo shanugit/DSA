@@ -24,3 +24,27 @@ function recurse(node: TreeNode | null, output: number[]): void {
   recurse(node.left, output);
   recurse(node.right, output);
 }
+
+/**
+ * Iterative approach
+ */
+
+function preOrderIterative(root: TreeNode | null) {
+  let answer: number[] = [];
+  let stack: TreeNode[] = [];
+  if (root != null) {
+    stack.push(root);
+  }
+
+  while (stack.length > 0) {
+    let curr: TreeNode | undefined = stack.pop();
+    if (curr != null) answer.push(curr.val);
+    if (curr != null && curr.right != null) {
+      stack.push(curr.right);
+    }
+    if (curr != null && curr.left != null) {
+      stack.push(curr.left);
+    }
+  }
+  return answer;
+}
