@@ -7,33 +7,43 @@
  * }
  */
 
-function bfsOfGraph(n, addList): number[] {
-  let ans = [];
-  let visited = new Set<number>();
-
-  for (let i = 0; i < n; i++) {
-    if (!visited.has(i)) {
-      bfs(i, visited, addList, ans);
-    }
-  }
-  return ans;
+function validPath(
+  n: number,
+  edges: number[][],
+  source: number,
+  destination: number
+): boolean {
+  let graph = buildGraph(n, edges);
+  return bfs(graph, source, destination);
 }
 
-function bfs(
-  node: number,
-  visited: Set<number>,
-  addList: number[][],
-  ans: number[]
-): void {
-  let q: number[] = [];
+function buildGraph(n: number, edges: number[][]): number[][] {
+  let graph = [];
+  for (let i = 0; i < n; i++) {
+    graph.push(new Array());
+  }
+  // creating addList for undirected graph
+  for (let edge of edges) {
+    graph[edge[0]].push(edge[1]);
+    graph[edge[1]].push(edge[0]);
+  }
+  return graph;
+}
+
+function bfs(graph, node, dest) {
+  let visited = new Set();
+  let q = [];
   q.push(node);
-  visited.add(node);
   while (q.length > 0) {
-    let tmp = q.shift();
-    for (let item of addList[tmp]) {
+    let tmpNode = q.shift();
+    if (tmpNode == dest) return true;
+    visited.add(tmpNode);
+    for (let item of graph[tmpNode]) {
       if (!visited.has(item)) {
-        bfs(item, visited, addList, ans);
+        q.push(item);
+        visited.add(item);
       }
     }
   }
+  return false;
 }
