@@ -26,3 +26,28 @@ function recurse(node: TreeNode | null, output: number[]): void {
   output.push(node.val);
   recurse(node.right, output);
 }
+
+/**
+ * Iterative InOrder solution
+ */
+
+function inOrederIterative(root: TreeNode | null): number[] {
+  let answer: number[] = [];
+  let stack: TreeNode[] = [];
+  if (root != null) {
+    stack.push(root);
+  }
+  while (stack.length > 0) {
+    let curr = stack.pop();
+    if (curr != null && curr.right != null) {
+      stack.push(curr.right);
+    }
+    if (curr != null) {
+      answer.push(curr.val);
+    }
+    if (curr != null && curr.left != null) {
+      stack.push(curr.left);
+    }
+  }
+  return answer;
+}
