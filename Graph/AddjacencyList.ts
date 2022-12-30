@@ -14,6 +14,7 @@ function buildAdjacencyList(n: number, edges: number[][]): number[][] {
   for (let i = 0; i < n; i++) {
     list.push([]);
   }
+  // Following is for undirected graph. In case of dirrecetd graph we dont need to connect two times as below
   for (let edge of edges) {
     list[edge[0]].push(edge[1]);
     list[edge[1]].push(edge[0]);
