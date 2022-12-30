@@ -4,7 +4,7 @@
  */
 
 /**
- * 1.
+ * 1. Number[][] as adjacency list
  * @param n : number of nodes
  * @param edges : edges of the nodes
  * @returns : Adjacency list representation of the graph as number[][]
@@ -21,7 +21,12 @@ function buildAdjacencyList(n: number, edges: number[][]): number[][] {
   }
   return list;
 }
-
+/**
+ * 2: Map as adjacency List
+ * @param n number of nodes
+ * @param edges array of edges
+ * @returns Map as adjacency list
+ */
 function buildList(n: number, edges: number[][]): Map<number, number[]> {
   let list = new Map();
   for (let edge of edges) {
