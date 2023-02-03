@@ -11,6 +11,10 @@ function subSetSum(arr: number[], target: number): boolean {
     return true;
   }
 
+  for (let i = 0; i < len; i++) {
+    dp.push([]);
+  }
+
   for (let i = 0; i < target + 1; i++) dp[0][i] = false;
   for (let i = 0; i < len + 1; i++) dp[i][0] = true;
 
